@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjName.UI.MVC.Models;
 using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
+
 
 namespace ProjName.UI.MVC.Controllers
 {
@@ -8,9 +10,12 @@ namespace ProjName.UI.MVC.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IConfiguration _config;
+
+        public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
             _logger = logger;
+            _config = config;
         }
 
         public IActionResult Index()
