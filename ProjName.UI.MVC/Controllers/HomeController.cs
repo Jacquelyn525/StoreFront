@@ -33,5 +33,47 @@ namespace ProjName.UI.MVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult News()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult Shop()
+        {
+            return View();
+        }
+
+        public IActionResult Cart()
+        {
+            return View();
+        }
+
+        public IActionResult CheckOut()
+        {
+            return View();
+        }
+
+        public IActionResult SingleNews()
+        {
+            return View();
+        }
+
+        public IActionResult SingleProduct()
+        {
+            return View();
+        }
+
+       
     }
 }
