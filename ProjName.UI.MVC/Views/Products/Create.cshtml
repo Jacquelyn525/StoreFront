@@ -1,0 +1,85 @@
+﻿@model projName.DATA.EF.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p></p>
+                    <h1>Create New Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="contact-form-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 mb-5 mb-lg-0">
+                <div class="form-title">
+                    <h2>Enter the info below to create a Product</h2>                   
+                </div>
+
+                <div class="contact-form">
+                    
+                        <form asp-action="Create" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <p>
+                                <select asp-for="CategoryId" placeholder="Category Id" asp-items="ViewBag.CategoryId"></select>
+                                <input asp-for="ProductName" placeholder="Name" />
+                                <span asp-validation-for="ProductName" class="text-danger"></span>
+                            </p>
+                            <p>
+                                <input asp-for="QtyPerUnit" placeholder="Quantity Per Unit" />
+                                <span asp-validation-for="QtyPerUnit" class="text-danger"></span>
+                            </p>
+
+                            <div class="form-group">
+                                <label asp-for="ProductPrice" class="control-label"></label>
+                                <input asp-for="ProductPrice" class="form-control" />
+                                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductStatusId" class="control-label"></label>
+                                <select asp-for="ProductStatusId" class="form-control" asp-items="ViewBag.ProductStatusId"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductDescription" class="control-label"></label>
+                                <input asp-for="ProductDescription" class="form-control" />
+                                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductImage" class="control-label"></label>
+                                @*                <input asp-for="ProductImage" class="form-control" />
+                                *@
+                                <input type="file" asp-for="Image" class="form-control" />
+                                <span asp-validation-for="ProductImage" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to Shopping</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
