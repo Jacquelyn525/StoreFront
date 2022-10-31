@@ -1,0 +1,137 @@
+﻿@model IEnumerable<projName.DATA.EF.Models.Product>
+
+@{
+    ViewData["Title"] = "Shop Supplies";
+}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Get 24/7 Support</p>
+                    <h1>Contact us</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<section class="product_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Shop <span>Supplies</span>
+            </h2>
+
+            <p align="center">
+                @if (User.IsInRole("Admin"))
+                {
+                    <span>
+                        <a asp-action="Create">Add New Item</a> |
+                        <a asp-action="Discontinued">Discontinued Gadgets</a> |
+                    </span>
+                }
+                <a asp-action="TiledProducts">Tile View</a>
+            </p>
+
+        </div>
+    </div>
+</section>
+@foreach (var item in Model)
+{
+    <div class="col-md-4 col-sm-4 col-xs-4">
+        <div class="menu-box">
+            <img src="~/assets/img/@item.ProductImage" alt="" />
+            <h3>@item.ProductName <span>$@Html.DisplayFor(ModelItem => item.ProductPrice)</span></h3> 
+            <p>Qty:@item.QtyPerUnit</p>
+            <a asp-action="AddToCart" asp-route-id="@item.ProductId" asp-controller="ShoppingCart" title=""></a>
+        </div>
+    </div>
+     }
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtyPerUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+             <th>
+            @Html.DisplayNameFor(model => model.ProductStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtyPerUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+            @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductImage)
+                    <img src="~/images/@item.ProductImage" class="img-fluid" alt="@item.ProductDescription" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                 <td>
+            @Html.DisplayFor(modelItem => item.ProductStatus.ProductStatusName)
+            </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <span>
+                            <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                        </span>
+                    }
+
+                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+
+
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        if (item.OrderProducts.Count() == 0)
+                        {
+                            <span>|</span>
+                            <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                        }
+                        else
+                        {
+                            <span>|</span>
+                            <a disabled="disabled" class="text-danger text-decoration-line-through"
+                   title="Cannot delete this Gadget as it is referenced by an Order">
+                                Delete
+                            </a>
+                        }
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

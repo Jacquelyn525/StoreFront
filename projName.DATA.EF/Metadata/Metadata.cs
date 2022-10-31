@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projName.DATA.EF//.Metadata
+namespace projName.DATA.EF.Models//.Metadata
 {
     public class CategoryMetadata
     {
@@ -59,5 +59,37 @@ namespace projName.DATA.EF//.Metadata
         public string? ProductDescription { get; set; }
 
     }
-    
+
+    public class UserDetailMetadata
+    {
+        public string UserId { get; set; } = null!;
+
+        [StringLength(50)]
+        [Display(Name = "First Name")]
+        [Required]
+        public string FirstName { get; set; } = null!;
+
+        [StringLength(50)]
+        [Display(Name = "Last Name")]
+        [Required]
+        public string LastName { get; set; } = null!;
+
+        [StringLength(150)]
+        public string? Address { get; set; }
+
+        [StringLength(50)]
+        public string? City { get; set; }
+
+        [StringLength(2)]
+        public string? State { get; set; }
+
+        [StringLength(5)]
+        [DataType(DataType.PostalCode)]
+        public string? Zip { get; set; }
+
+        [StringLength(24)]
+        [DataType(DataType.PhoneNumber)]
+        public string? Phone { get; set; }
+    }
+
 }

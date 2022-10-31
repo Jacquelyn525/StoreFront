@@ -1306,7 +1306,7 @@ ul.product-share li:hover a {
   color: #ffe200;
 }
 
-.single-product-item {
+.single-product-item {  
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -2707,14 +2707,7 @@ table.order-details tbody td {
 
 .card.single-accordion {
   border: 1px solid #eeeeee;
-}
-
-.single-product-item {
-  -webkit-box-shadow: 0 0 20px #e4e4e4;
-  box-shadow: 0 0 20px #e4e4e4;
-  padding-bottom: 50px;
-  border-radius: 5px;
-}
+}.single-product-item {        -webkit-box-shadow: 0 0 20px #e4e4e4;    box-shadow: 0 0 20px #e4e4e4;    padding-bottom: 50px;    border-radius: 5px;    }
 
 /* -----------------------------------------------------------------------------
 
